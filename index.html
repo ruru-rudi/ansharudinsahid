@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Music Player UI</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <div class="player-container" role="main" aria-label="Music Player">
+    <header class="header-top" aria-label="Playlist Title">
+      <button type="button" aria-label="Collapse playlist" class="text-lg cursor-pointer" style="transform: rotate(90deg); line-height: 0;">
+        <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+      <div class="nama-album" id="nama-album">Indie Rock Road Trip</div>
+      <button type="button" aria-label="More options">
+        <svg aria-hidden="true" width="4" height="18" fill="#d1c49d" viewBox="0 0 4 18" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="2" cy="2" r="2"/>
+          <circle cx="2" cy="9" r="2"/>
+          <circle cx="2" cy="16" r="2"/>
+        </svg>
+      </button>
+    </header>
+
+    <section class="track-info" aria-label="Now playing track info">
+      <h1 id="track-title" tabindex="0">The Runner</h1>
+      <p id="track-artist" tabindex="0">Foals</p>
+    </section>
+
+    <section class="progress-ring" aria-label="Track progress">
+      <svg>
+        <circle class="background-ring" r="114" cx="120" cy="120" />
+        <circle class="progress-ring__circle" r="114" cx="120" cy="120" stroke-dasharray="716" stroke-dashoffset="716" />
+      </svg>
+      <div class="album-image-wrapper">
+        <img src="image/Experience Violin.jpeg" alt="album art" onerror="this.style.display='none';" />
+      </div>
+    </section>
+
+    <section class="time-progress" aria-live="polite" aria-atomic="true">
+      <time id="current-time" datetime="PT1M23S" aria-label="Current playback time">01:23</time>
+      <time id="total-time" datetime="PT2M35S" aria-label="Total track duration">02:35</time>
+    </section>
+
+    <section class="main-controls" role="group" aria-label="Primary playback controls">
+        <audio id="player" src="audio/Experience Violin.mp3"></audio>
+      <button type="button" aria-label="Volume down" title="Reduce volume" >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+          <line x1="11" y1="5" x2="11" y2="19"/>
+          <line x1="5" y1="9" x2="5" y2="15"/>
+        </svg>
+      </button>
+      <button type="button" aria-label="Previous track" title="Previous track">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+          <polygon points="19 20 9 12 19 4 19 20"/>
+          <line x1="5" y1="19" x2="5" y2="5"/>
+        </svg>
+      </button>
+
+      <button type="button" aria-label="Play" title="Play" class="play" id="play-pause-btn" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="currentColor" >
+          <polygon points="6 4 20 12 6 20 6 4"/>
+        </svg>
+      </button>
+
+      <button type="button" aria-label="Next track" title="Next track">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+          <polygon points="5 4 15 12 5 20 5 4"/>
+          <line x1="19" y1="5" x2="19" y2="19"/>
+        </svg>
+      </button>
+
+      <button type="button" aria-label="Like track" title="Like track" class="heart" id="like-btn" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+          <path d="M20.84 4.61c-1.43-1.32-3.71-1.39-5.1-.17l-.74.65-.74-.65c-1.4-1.23-3.67-1.16-5.1.17-1.56 1.45-1.6 3.96-.12 5.44L12 21.35l5.6-11.3c1.49-1.48 1.44-3.99-.03-5.44z"/>
+        </svg>
+      </button>
+    </section>
+
+    <section class="bottom-controls" role="group" aria-label="Additional playback controls">
+      <button type="button" aria-label="Shuffle" title="Shuffle tracks" id="shuffle-btn" aria-pressed="false" class="active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 3 21 3 21 8"/>
+          <line x1="4" y1="20" x2="21" y2="3"/>
+          <polyline points="21 16 21 21 16 21"/>
+          <line x1="15" y1="15" x2="21" y2="21"/>
+          <line x1="4" y1="4" x2="9" y2="9"/>
+        </svg>
+      </button>
+      <button type="button" aria-label="Playlist" title="View playlist">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <button type="button" aria-label="Volume" title="Volume control" id="volume-btn" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+          <polygon points="3 9 9 9 13 5 13 19 9 15 3 15 3 9"/>
+          <path d="M16.5 12a4.5 4.5 0 0 1 0 0z" stroke-width="0"/>
+          <path d="M16.5 12c0-1.686-1.253-3.066-3-3.454" />
+          <path d="M16.5 12c0 1.686-1.253 3.066-3 3.454" />
+        </svg>
+      </button>
+      <button type="button" aria-label="Repeat" title="Repeat track" id="repeat-btn" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+          <polyline points="17 1 21 5 17 9"/>
+          <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+          <polyline points="7 23 3 19 7 15"/>
+          <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+        </svg>
+      </button>
+    </section>
+  </div>
+
+  <script>
+    // JavaScript for circular progress and play/pause toggle
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const progressCircle = document.querySelector('.progress-ring__circle');
+
+    // Constants for circle progress
+    const radius = 114;
+    const circumference = 2 * Math.PI * radius;
+
+    progressCircle.style.strokeDasharray = circumference;
+    progressCircle.style.strokeDashoffset = circumference;
+
+    // Setup for demo progress
+    let currentProgress = 83; // seconds played for demo 01:23 (83s)
+    const totalDuration = 155; // 02:35 (155s)
+
+    function setProgress(percent) {
+      const offset = circumference - (percent / 100) * circumference;
+      progressCircle.style.strokeDashoffset = offset;
+    }
+
+    // Initialize progress bar at current progress
+    setProgress((currentProgress / totalDuration) * 100);
+
+const audio = document.getElementById('player');
+
+playPauseBtn.addEventListener('click', () => {
+  const isPlaying = playPauseBtn.getAttribute('aria-pressed') === 'true';
+  if (isPlaying) {
+    playPauseBtn.setAttribute('aria-pressed', 'false');
+    playPauseBtn.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="currentColor" >
+        <polygon points="6 4 20 12 6 20 6 4"/>
+      </svg>
+    `;
+    audio.pause();
+  } else {
+    playPauseBtn.setAttribute('aria-pressed', 'true');
+    playPauseBtn.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="currentColor" >
+        <rect x="6" y="4" width="4" height="16"></rect>
+        <rect x="14" y="4" width="4" height="16"></rect>
+      </svg>
+    `;
+    audio.play();
+  }
+});
+
+
+    // Like button toggle color
+    const likeBtn = document.getElementById('like-btn');
+    likeBtn.addEventListener('click', () => {
+      const isLiked = likeBtn.getAttribute('aria-pressed') === 'true';
+      if (isLiked) {
+        likeBtn.setAttribute('aria-pressed', 'false');
+        likeBtn.classList.remove('active');
+      } else {
+        likeBtn.setAttribute('aria-pressed', 'true');
+        likeBtn.classList.add('active');
+      }
+    });
+
+    // Shuffle toggle active class
+    const shuffleBtn = document.getElementById('shuffle-btn');
+    shuffleBtn.addEventListener('click', () => {
+      const pressed = shuffleBtn.getAttribute('aria-pressed') === 'true';
+      if (pressed) {
+        shuffleBtn.setAttribute('aria-pressed', 'false');
+        shuffleBtn.classList.remove('active');
+      } else {
+        shuffleBtn.setAttribute('aria-pressed', 'true');
+        shuffleBtn.classList.add('active');
+      }
+    });
+
+    // Repeat toggle active class
+    const repeatBtn = document.getElementById('repeat-btn');
+    repeatBtn.addEventListener('click', () => {
+      const pressed = repeatBtn.getAttribute('aria-pressed') === 'true';
+      if (pressed) {
+        repeatBtn.setAttribute('aria-pressed', 'false');
+        repeatBtn.classList.remove('active');
+      } else {
+        repeatBtn.setAttribute('aria-pressed', 'true');
+        repeatBtn.classList.add('active');
+      }
+    });
+
+    const currentTimeDisplay = document.getElementById('current-time');
+const totalTimeDisplay = document.getElementById('total-time');
+
+// Format waktu jadi mm:ss
+function formatTime(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+}
+
+// Saat audio siap dimainkan, tampilkan durasinya
+audio.addEventListener('loadedmetadata', () => {
+  totalTimeDisplay.textContent = formatTime(audio.duration);
+});
+
+// Update waktu berjalan setiap detik
+audio.addEventListener('timeupdate', () => {
+  currentTimeDisplay.textContent = formatTime(audio.currentTime);
+  
+  // Update progress ring juga
+  const progressPercent = (audio.currentTime / audio.duration) * 100;
+  setProgress(progressPercent);
+});
+
+  </script>
+</body>
+</html>
+

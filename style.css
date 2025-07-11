@@ -1,0 +1,196 @@
+    /* Custom styles for circular progress ring */
+    .progress-ring {
+      position: relative;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+    }
+    .progress-ring svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: rotate(-90deg);
+      width: 240px;
+      height: 240px;
+      overflow: visible;
+    }
+    .progress-ring circle {
+      fill: none;
+      stroke-width: 8;
+      stroke-linecap: round;
+    }
+    .progress-ring .background-ring {
+      stroke: rgba(255 255 255 / 0.15);
+    }
+    .progress-ring .progress-ring__circle {
+      stroke: #f6e6c0;
+      transition: stroke-dashoffset 0.3s ease;
+    }
+    /* Thumbnail style */
+    .album-image-wrapper {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow:
+        0 0 20px 3px rgba(246, 230, 192, 0.5);
+      z-index: 10;
+      position: relative;
+    }
+    .album-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Track title and artist */
+    .track-info {
+      text-align: center;
+      margin-top: 1.5rem;
+      color: #f6e6c0;
+    }
+    .track-info h1 {
+      font-weight: 700;
+      font-size: 1.875rem; /* 30px */
+      line-height: 1.1;
+    }
+    .track-info p {
+      margin-top: 0.25rem;
+      font-weight: 500;
+      color: #d1c49d;
+      font-size: 1rem;
+    }
+    /* Time progress */
+    .time-progress {
+      margin-top: 0.75rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      color: #d1c49d;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 0.875rem;
+    }
+    /* Controls */
+    .main-controls {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .main-controls button {
+      background: transparent;
+      border: none;
+      color: #d1c49d;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+    .main-controls button:focus {
+      outline: none;
+      color: #f6e6c0;
+    }
+    .main-controls button.play {
+      background-color: #f6e6c0;
+      color: #713c07;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow:
+        0 0 10px 3px rgba(246, 230, 192, 0.5);
+      transition: background-color 0.3s ease;
+    }
+    .main-controls button.play:hover {
+      background-color: #d0bb80;
+    }
+    .main-controls svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+    /* Header top */
+    .header-top {
+      padding-top: 1rem;
+      padding-bottom: 0.5rem;
+      color: #d1c49d;
+      font-weight: 600;
+      font-size: 1.1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .header-top svg {
+      width: 14px;
+      height: 14px;
+      stroke: #d1c49d;
+      stroke-width: 2;
+    }
+    /* Bottom controls */
+    .bottom-controls {
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      color: #d1c49d;
+    }
+    .bottom-controls button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: #d1c49d;
+      transition: color 0.2s ease;
+    }
+    .bottom-controls button:focus {
+      outline: none;
+      color: #f6e6c0;
+    }
+    .bottom-controls svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+    .bottom-controls .active {
+      color: #f6e6c0;
+    }
+    /* Heart icon colored */
+    .heart.active {
+      color: #d87c4c;
+    }
+    /* Container background gradient and style */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background-image: url(image/background.jpeg);
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .player-container {
+      width: 90vw;
+      max-width: 100vw;
+      background-color: rgba(255, 255, 255, 0.05);  
+      backdrop-filter: blur(5px);
+      border-radius: 28px;
+      padding: 1.75rem 1.5rem 3rem;
+      box-shadow: 0 16px 25px rgb(0 0 0 / 0.4);
+      color: #f6e6c0;
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
